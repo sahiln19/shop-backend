@@ -6,6 +6,7 @@ app.use(express.urlencoded({ extended: true }));
 // app.use(cors());
 var bodyParser = require('body-parser');
 var mysql2 = require('mysql2');
+var adminLogin = require('./adminLogin');
 var categories = require('./categories');
 var pincode = require('./pincode');
 var product = require('./product');
@@ -13,6 +14,11 @@ var sliders = require('./sliders');
 var bills = require('./bills.js');
 var carts = require('./carts');
 var users = require('./users');
+
+//adminLogin Routes
+app.post('/admin',(req,res)=> adminLogin.add(req,res));
+app.put('/admin/:id',(req,res)=> adminLogin.update(req,res));
+
 
 //Categories Routes
 app.post('/categories',(req,res)=> categories.add(req,res));
