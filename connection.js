@@ -1,6 +1,6 @@
 var mysql2 = require('mysql2');
 var data =  {
-    database :'myshop',
+    database :'MYSHOP',
     user : 'root',
     password :'' ,
     host : 'localhost',

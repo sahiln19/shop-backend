@@ -8,10 +8,11 @@ var add = function(req, res) {
         res.json({ error: "Please provide all required data" }); 
         return;
     }
+
+    // Assuming the column name in the database is correct.
+    var query = `INSERT INTO carts (product_id, quantity, price, user_id, bill_id) VALUES (?, ?, ?, ?, ?)`;
     
-    var query = `INSERT INTO carts (product_id, quantity, price, user_id, bill_id) VALUES (${product_id}, ${quantity}, ${price}, ${user_id}, ${bill_id})`;
-    
-    connection.DB.query(query, (err, result) => {
+    connection.DB.query(query, [product_id, quantity, price, user_id, bill_id], (err, result) => {
         if (err) {
             console.log(err);
             res.json({ error: "Error in adding cart" });
@@ -20,6 +21,7 @@ var add = function(req, res) {
         }
     });
 };
+
 
 
 

@@ -1,14 +1,11 @@
-var bodyParser = require('body-parser');
 var express = require('express');
 var app = express();
-var path = require('path');
-var cors = require('cors');
-var mysql2 = require('mysql2');
-app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: true }));
+// var cors = require('cors');
+// app.use(cors());
+var bodyParser = require('body-parser');
+var mysql2 = require('mysql2');
 var categories = require('./categories');
 var pincode = require('./pincode');
 var product = require('./product');

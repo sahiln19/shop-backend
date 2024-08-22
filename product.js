@@ -1,14 +1,16 @@
 var connection = require('./connection');
-
+//
 var add = (req, res) => {
-    var { category_id, title, detail, price, stock, weight, size, photo, islive,isdeleted } = req.body;
+    var { category_id, title, detail, price, stock, weight, size, photo, islive, isdeleted } = req.body;
     console.log("Received request with body:", req.body);
-    if (!category_id || !title || !detail || !price || !photo || !stock || !weight || !size || islive === undefined || isdeleted === undefined ) {
+
+    if (!category_id || !title || !detail || !price || !photo || !stock || !weight || !size || islive === undefined || isdeleted === undefined) {
         return res.json('All fields are required');
     }
-    var query = `INSERT INTO products (category_id, title, detail, price, stock, weight, size, photo, islive,isdeleted, ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, )`;
-    
-    connection.DB.query(query, [category_id, title, detail, price, stock, weight, size, photo, islive,isdeleted, ], (err, result) => {
+
+    var query = `INSERT INTO products (category_id, title, detail, price, stock, weight, size, photo, islive, isdeleted) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+
+    connection.DB.query(query, [category_id, title, detail, price, stock, weight, size, photo, islive, isdeleted], (err, result) => {
         if (err) {
             res.json('Error in adding product');
             console.log(err);
@@ -17,6 +19,8 @@ var add = (req, res) => {
         }
     });
 }
+
+
 let select  = (req, res) => {
     connection.DB.query('SELECT * FROM products', (err, result) => {
         if (err) {
